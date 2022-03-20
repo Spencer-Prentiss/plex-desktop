@@ -1,0 +1,19 @@
+{
+	"name": "plex-desktop",
+	"productName": "Plex",
+	"version": "1.0.0",
+	"description": "Plex Desktop",
+	"main": "src/main.js",
+	"scripts": {
+		"build": "rimraf \"Plex Desktop*\" && electron-packager . --platform=win32 --arch=x64 --icon=src/Plex",
+		"start": "electron ."
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"electron": "^17.1.2",
+		"electron-packager": "^15.4.0",
+		"rimraf": "^3.0.2"
+	}
+}
