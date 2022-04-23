@@ -2,11 +2,18 @@ const { app, BrowserWindow, globalShortcut, Menu, screen, Tray } = require('elec
 const path = require('path');
 const http = require('http');
 
-const favicon = path.join(__dirname, 'Plex.ico');
+global.SRC_ROOT = app.getAppPath();
+global.APP_ROOT = SRC_ROOT;
+if (APP_ROOT.endsWith('.asar')) {
+	global.APP_ROOT = path.dirname(path.dirname(APP_ROOT));
+}
+
+const favicon = path.join(SRC_ROOT, 'icons/plex.ico');
 const plexServer = '0.0.0.0'; // Update with plex server address
 const plexPort = '0'; // Update with plex server port
 const plexPage = `http://${plexServer}:${plexPort}/web/index.html`;
-const unresponsivePage = path.join(__dirname, 'unresponsive.html');
+const unresponsivePage = path.join(SRC_ROOT, 'pages/unresponsive.html');
+const title = 'Plex';
 
 let mainWindow = null;
 let tray = null;
@@ -63,6 +70,7 @@ app.whenReady().then(() => {
 		autoHideMenuBar: true,
 		backgroundColor: '#1f1f1f',
 		show: false,
+		title: title,
 	});
 
 	mainWindow

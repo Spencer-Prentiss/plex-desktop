@@ -1,19 +1,33 @@
 {
 	"name": "plex-desktop",
-	"productName": "Plex",
-	"version": "1.0.0",
-	"description": "Plex Desktop",
-	"main": "src/main.js",
+	"productName": "Plex Desktop",
+	"version": "1.0.1",
+	"description": "Plex Desktop Application using Electron",
+	"main": "./src/main.js",
 	"scripts": {
-		"build": "rimraf \"Plex Desktop*\" && electron-packager . --platform=win32 --arch=x64 --icon=src/Plex",
-		"start": "electron ."
+		"start": "electron .",
+		"build": "webpack --config ./webpack.config.js",
+		"build:clean": "yarn clean:pack && yarn build",
+		"clean": "rimraf \"./.dist\"",
+		"clean:build": "rimraf \"./.dist/webpack\"",
+		"clean:dist": "rimraf \"./dist/package\"",
+		"dist": "yarn build && electron-builder --config ./plex-builder.yml",
+		"dist:clean": "yarn clean && yarn dist"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"electron",
+		"plex"
+	],
+	"author": "Spencer Prentiss",
 	"license": "ISC",
 	"devDependencies": {
-		"electron": "^17.1.2",
-		"electron-packager": "^15.4.0",
-		"rimraf": "^3.0.2"
+		"electron": "^17.4.1",
+		"electron-builder": "^23.0.3",
+		"javascript-obfuscator": "^4.0.0",
+		"rimraf": "^3.0.2",
+		"webpack": "^5.72.0",
+		"webpack-cli": "^4.9.2",
+		"webpack-node-externals": "^3.0.0",
+		"webpack-obfuscator": "^3.5.1"
 	}
 }

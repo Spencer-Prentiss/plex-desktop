@@ -1,2 +1,5 @@
-.vscode/
+.[Bb]uild
+.[Dd]ist
+[Bb]uild
+[Dd]ist
 node_modules/

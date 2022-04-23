@@ -1,0 +1,27 @@
+directories:
+    output: ./.dist/package
+    buildResources: build
+appId: plex-desktop
+extraMetadata:
+    main: ./src/main.js
+files:
+    - from: ./.dist/webpack
+      to: ./src
+      filter:
+          - main.js
+    - from: ./icons
+      to: ./icons
+    - from: ./images
+      to: ./images
+    - from: ./pages
+      to: ./pages
+    - from: ./package
+      to: ./
+      filter:
+          - package.json
+win:
+    icon: icons/plex.ico
+    target:
+        - portable
+        - msi
+electronVersion: 17.4.1
